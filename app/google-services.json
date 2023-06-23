@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "783802064690",
+    "project_id": "autismdetection-b2093",
+    "storage_bucket": "autismdetection-b2093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783802064690:android:8b31ad106e88308749012b",
+        "android_client_info": {
+          "package_name": "com.messas.dataentryadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783802064690-b1jcu8e0l2d6c49qrpkmd66p0kr3r6gs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHZdb6XIYzlcqFKC5-sn0fpR5l851nykE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783802064690-b1jcu8e0l2d6c49qrpkmd66p0kr3r6gs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783802064690:android:b8822ef8eef2d7cc49012b",
+        "android_client_info": {
+          "package_name": "com.messas.dataentryuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783802064690-b1jcu8e0l2d6c49qrpkmd66p0kr3r6gs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHZdb6XIYzlcqFKC5-sn0fpR5l851nykE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783802064690-b1jcu8e0l2d6c49qrpkmd66p0kr3r6gs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

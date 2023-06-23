@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/profile_activity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDetailsDaily">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:id="@+id/profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <ScrollView
+
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <LinearLayout
+                    android:background="@color/white"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+                        //id
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter ID"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:id="@+id/ide"
+
+                                android:hint="      Ex :  01018106033 "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:textAlignment="center"
+                                android:inputType="text"
+                                android:fontFamily="@font/montserrat"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //number
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Phone Number"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:id="@+id/phonenumber"
+
+                                android:hint="       Ex :   01....... "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textAlignment="center"
+                                android:textSize="15dp"
+                                android:inputType="phone"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //name
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Name"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:textAlignment="center"
+                                android:id="@+id/name"
+
+                                android:hint="       Ex :  Mr. Rahim "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="text"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //dob
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Date of Birth"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:textAlignment="center"
+                                android:id="@+id/dob"
+                                android:maxLength="11"
+                                android:hint="       Ex :  01-01-1999 "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="numberDecimal"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //status
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Status"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:id="@+id/statusss"
+                                android:textAlignment="center"
+
+                                android:hint="       Ex :  Due "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="text"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //totaltake
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Total Taka"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:id="@+id/totaltaka"
+
+                                android:hint="       Ex :  500 "
+                                android:textAlignment="center"
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="numberDecimal"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //paidtaka
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Paid Taka"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:textAlignment="center"
+                                android:id="@+id/paidtakaa"
+                                android:maxLength="11"
+                                android:hint="       Ex :  300 "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="numberDecimal"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //du taka
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Enter Due Taka"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <EditText
+                                android:fontFamily="@font/montserrat"
+                                android:textAlignment="center"
+                                android:id="@+id/duetakka"
+
+                                android:hint="       Ex :  200  "
+                                android:background="@drawable/border"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:inputType="numberDecimal"
+                                android:layout_marginRight="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/space_50dp"
+                                ></EditText>
+                        </LinearLayout>
+                        //image
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <TextView
+                                android:fontFamily="@font/montserrat"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/space_10dp"
+                                android:layout_marginRight="@dimen/space_10dp"
+                                android:gravity="center_vertical"
+                                android:text="Uploaded  Image"
+
+                                android:textStyle="normal"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+
+
+                                ></TextView>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <ImageView
+                                    android:id="@+id/spinner1"
+                                    android:maxLength="11"
+                                    android:hint="      Enter old password"
+
+                                    android:layout_marginLeft="20dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp"
+                                    android:src="@drawable/image"
+                                    android:layout_centerInParent="true"
+                                    android:inputType="numberDecimal"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    ></ImageView>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        //submit
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/space_50dp"
+
+                            android:id="@+id/cirLoginButton"
+
+                            android:text="Update"
+
+                            android:layout_margin="20dp"
+
+                            android:textAllCaps="true"
+
+                            android:layout_gravity="center"
+                            />
+
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
