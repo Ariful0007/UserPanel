@@ -23,6 +23,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,15 +65,24 @@ import es.dmoral.toasty.Toasty;
 import static android.content.ContentValues.TAG;
 
 public class AddUser extends AppCompatActivity {
+    String limu;
 
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
     KProgressHUD progressHUD;
     ImageView spinner1;
+    String [] sss={"PC","Print","On the way","Arrive","Suspend","Bakend","Rework"};
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+        try {
+            limu=getIntent().getStringExtra("limu");
+        }catch (Exception e)
+        {
+            limu=getIntent().getStringExtra("limu");
+        }
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
         toolbar.setTitle("Add User");
         setSupportActionBar(toolbar);
@@ -107,6 +118,13 @@ public class AddUser extends AppCompatActivity {
         totaltaka.addTextChangedListener(tooo);
         duetakka=findViewById(R.id.duetakka);
         spinner1=findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item,sss);
+        //Getting the instance of AutoCompleteTextView
+
+        statusss.setThreshold(1);//will start working from first character
+        statusss.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+        statusss.setTextColor(Color.RED);
         spinner1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -379,7 +397,8 @@ public class AddUser extends AppCompatActivity {
                 .show();
 
     }
-    EditText ide,phonenumber,name,dob,statusss,totaltaka,paidtakaa,duetakka;
+    AutoCompleteTextView statusss;
+    EditText ide,phonenumber,name,dob,totaltaka,paidtakaa,duetakka;
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),HomeActivity.class));
@@ -405,13 +424,37 @@ public class AddUser extends AppCompatActivity {
 
         UserModel userMap=new UserModel( ide.getText().toString(),phonenumber.getText().toString()
                 ,name.getText().toString(),dob.getText().toString(),statusss.getText().toString(),totaltaka.getText().toString()
-                ,paidtakaa.getText().toString(),duetakka.getText().toString(),""+downloadUri,""+today,""+time,"abc@gmail.com");
+                ,paidtakaa.getText().toString(),duetakka.getText().toString(),""+downloadUri,""+today,""+time,limu);
 
         firebaseFirestore.collection("Daily")
                 .document(""+today)
                 .collection("List")
                 .document("REfer")
+                .collection(limu)
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .set(userMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+        firebaseFirestore.collection("Daily")
+                .document(""+today)
+                .collection("List")
+                .document("REfer")
                 .collection("abc@gmail.com")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .set(userMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+        firebaseFirestore.collection("Total")
+                .document(limu)
+                .collection("List")
                 .document(firebaseAuth.getCurrentUser().getEmail())
                 .set(userMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -486,19 +529,30 @@ public class AddUser extends AppCompatActivity {
                                                                                                                                     @Override
                                                                                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                                                                                         if (task.isSuccessful()) {
-                                                                                                                                            //firebaseAuth.signOut();
-                                                                                                                                            Handler handler=new Handler();
-                                                                                                                                            handler.postDelayed(new Runnable() {
-                                                                                                                                                @Override
-                                                                                                                                                public void run() {
+                                                                                                                                            firebaseAuth.signOut();
+                                                                                                                                            firebaseAuth.signInWithEmailAndPassword(limu.toString().toLowerCase(),"123456")
+                                                                                                                                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                                                                                                        @Override
+                                                                                                                                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                                                                                                            if (task.isSuccessful())
+                                                                                                                                                            {
+                                                                                                                                                                Handler handler=new Handler();
+                                                                                                                                                                handler.postDelayed(new Runnable() {
+                                                                                                                                                                    @Override
+                                                                                                                                                                    public void run() {
 
-                                                                                                                                                    Toasty.success(getApplicationContext(), "Data Added.", Toasty.LENGTH_SHORT, true).show();
+                                                                                                                                                                        Toasty.success(getApplicationContext(), "Data Added.", Toasty.LENGTH_SHORT, true).show();
 
-                                                                                                                                                    firebaseAuth.signOut();
-                                                                                                                                                    progressHUD.dismiss();
-                                                                                                                                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                                                                                                                                                }
-                                                                                                                                            },500);
+
+                                                                                                                                                                        progressHUD.dismiss();
+                                                                                                                                                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                                                                                                                                                    }
+                                                                                                                                                                },500);
+
+
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    });
 
 
                                                                                                                                         }

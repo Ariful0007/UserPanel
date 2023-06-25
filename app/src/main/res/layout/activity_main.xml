@@ -51,7 +51,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/josefinsans_semibold"
         android:includeFontPadding="false"
-        android:text="Data Entry Admin"
+        android:text="Data Entry User"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorTextDark"

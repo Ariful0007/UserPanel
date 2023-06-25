@@ -45,9 +45,9 @@ public class AdapterSub1 extends RecyclerView.Adapter<AdapterSub1.myview> {
     public void onBindViewHolder(@NonNull myview holder, final int position) {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseFirestore= FirebaseFirestore.getInstance();
-        holder.customer_name.setText(data.get(position).getName());
-        holder.customer_number.setText(data.get(position).getPhonenumber());
-        holder.logout.setText(""+data.get(position).getUuid());
+        holder.customer_name.setText("ID : "+data.get(position).getIde()+"\nName : "+data.get(position).getName());
+        holder.customer_number.setText("Mobile Number : "+data.get(position).getPhonenumber()+"\nStatus : "+data.get(position).getStatusss());
+        holder.logout.setText("Date : \n"+data.get(position).getUuid());
         if (data.get(position).getImage().equals("Image"))
         {
 
@@ -82,7 +82,7 @@ holder.card_view8.setOnClickListener(new View.OnClickListener() {
                                     .document(""+today)
                                     .collection("List")
                                     .document("REfer")
-                                    .collection("abc@gmail.com")
+                                    .collection(firebaseAuth.getCurrentUser().getEmail())
                                     .document(data.get(position).getPhonenumber().toString()+"@gmail.com")
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -96,7 +96,35 @@ holder.card_view8.setOnClickListener(new View.OnClickListener() {
                                                             .document(""+today)
                                                             .collection("List")
                                                             .document("REfer")
+                                                            .collection(firebaseAuth.getCurrentUser().getEmail())
+                                                            .document(data.get(position).getPhonenumber().toString()+"@gmail.com")
+                                                            .delete()
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if (task.isSuccessful()){
+
+                                                                    }
+                                                                }
+                                                            });
+                                                    firebaseFirestore.collection("Daily")
+                                                            .document(""+today)
+                                                            .collection("List")
+                                                            .document("REfer")
                                                             .collection("abc@gmail.com")
+                                                            .document(data.get(position).getPhonenumber().toString()+"@gmail.com")
+                                                            .delete()
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if (task.isSuccessful()){
+
+                                                                    }
+                                                                }
+                                                            });
+                                                    firebaseFirestore.collection("Total")
+                                                            .document(firebaseAuth.getCurrentUser().getEmail())
+                                                            .collection("List")
                                                             .document(data.get(position).getPhonenumber().toString()+"@gmail.com")
                                                             .delete()
                                                             .addOnCompleteListener(new OnCompleteListener<Void>() {

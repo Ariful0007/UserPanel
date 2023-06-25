@@ -1,5 +1,6 @@
 package com.messas.dataentryuser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,15 +10,24 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
-        toolbar.setTitle("Main Page");
+
         setSupportActionBar(toolbar);
 
         toolbar.setTitleTextColor(Color.WHITE);
@@ -26,6 +36,28 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setElevation(10.0f);
         getSupportActionBar().setElevation(10.0f);
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        firebaseFirestore.collection("User2_employee")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful())
+                        {
+                            if (task.getResult().exists())
+                            {
+                                try {
+                                    toolbar.setTitle("Main Page ("+task.getResult().getString("name")+")");
+                                }catch (Exception e)
+                                {
+                                    toolbar.setTitle("Main Page ("+task.getResult().getString("name")+")");
+                                }
+                            }
+                        }
+                    }
+                });
     }
     @Override
     public void onBackPressed() {
@@ -52,7 +84,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void addd(View view) {
-        startActivity(new Intent(getApplicationContext(),AddUser.class));
+        Intent intent=new Intent(getApplicationContext(), AddUser.class);
+        intent.putExtra("limu",""+firebaseAuth.getCurrentUser().getEmail().toString());
+        startActivity(intent);
     }
 
     public void totallclicked(View view) {

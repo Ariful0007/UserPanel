@@ -14,6 +14,8 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,6 +78,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         phonenumber.setEnabled(false);
         name=findViewById(R.id.name);
         name.setEnabled(true);
+        firebaseAuth=FirebaseAuth.getInstance();
 
         dob=findViewById(R.id.dob);
         dob.setEnabled(true);
@@ -129,6 +132,13 @@ public class UserDetailsActivity extends AppCompatActivity {
                         }
                     }
                 });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item,sss);
+        //Getting the instance of AutoCompleteTextView
+
+        statusss.setThreshold(1);//will start working from first character
+        statusss.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+        statusss.setTextColor(Color.RED);
         Button cirLoginButton=findViewById(R.id.cirLoginButton);
         cirLoginButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -148,7 +158,16 @@ public class UserDetailsActivity extends AppCompatActivity {
                             ,name.getText().toString(),dob.getText().toString(),statusss.getText().toString(),totaltaka.getText().toString()
                             ,paidtakaa.getText().toString(),duetakka.getText().toString(),""+uuiddd,""+today,""+time,"abc@gmail.com");
 
+                    firebaseFirestore.collection("Total")
+                            .document(firebaseAuth.getCurrentUser().getEmail())
+                            .collection("List")  .document(phonenumber.getText().toString().toString()+"@gmail.com")
+                            .delete()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
 
+                                }
+                            });
                     firebaseFirestore.collection("User2").document(phonenumber.getText().toString().toString()+"@gmail.com")
                             .set(userMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -167,9 +186,11 @@ public class UserDetailsActivity extends AppCompatActivity {
 
 
     }
-    String uuiddd;
+    String [] sss={"PC","Print","On the way","Arrive","Suspend","Bakend","Rework"};
 
-    EditText ide,phonenumber,name,dob,statusss,totaltaka,paidtakaa,duetakka;
+    String uuiddd;
+    AutoCompleteTextView statusss;
+    EditText ide,phonenumber,name,dob,totaltaka,paidtakaa,duetakka;
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),NotificationActivity.class));

@@ -45,9 +45,9 @@ public class AdapterSub11 extends RecyclerView.Adapter<AdapterSub11.myview> {
     public void onBindViewHolder(@NonNull myview holder, final int position) {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseFirestore= FirebaseFirestore.getInstance();
-        holder.customer_name.setText(data.get(position).getName());
-        holder.customer_number.setText(data.get(position).getPhonenumber());
-        holder.logout.setText(""+data.get(position).getUuid());
+        holder.customer_name.setText("ID : "+data.get(position).getIde()+"\nName : "+data.get(position).getName());
+        holder.customer_number.setText("Mobile Number : "+data.get(position).getPhonenumber()+"\nStatus : "+data.get(position).getStatusss());
+        holder.logout.setText("Date : \n"+data.get(position).getUuid());
         if (data.get(position).getImage().equals("Image"))
         {
 
@@ -88,6 +88,16 @@ holder.card_view8.setOnClickListener(new View.OnClickListener() {
                                             {
                                                 if (task.getResult().exists())
                                                 {
+                                                    firebaseFirestore.collection("Total")
+                                                            .document(firebaseAuth.getCurrentUser().getEmail())
+                                                            .collection("List")  .document(data.get(position).getPhonenumber().toString()+"@gmail.com")
+                                                            .delete()
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                }
+                                                            });
 
                                                     firebaseFirestore.collection("User2")
                                                             .document(data.get(position).getPhonenumber().toString()+"@gmail.com")

@@ -52,6 +52,7 @@ public class NotificationActivity extends AppCompatActivity {
     String cus_name;
     ZoneId z = ZoneId.of( "Asia/Dhaka" );
     LocalDate today = LocalDate.now( z );
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class NotificationActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
 
         setSupportActionBar(toolbar);
-
+firebaseAuth=FirebaseAuth.getInstance();
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_myarrow);
         try {
@@ -89,7 +90,9 @@ public class NotificationActivity extends AppCompatActivity {
         getList = new ArrayList<>();
         getDataAdapter1 = new AdapterSub11(getList);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        documentReference =        firebaseFirestore.collection("User2")
+        documentReference =         firebaseFirestore.collection("Total")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .collection("List")
                 .document();
         recyclerView = findViewById(R.id.rreeeed);
         recyclerView.setHasFixedSize(true);
@@ -125,7 +128,7 @@ public class NotificationActivity extends AppCompatActivity {
     double total=0;
     SearchView name;
     FirebaseFirestore firebaseFirestore;
-    FirebaseAuth firebaseAuth;
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),HomeActivity.class));
@@ -146,7 +149,9 @@ public class NotificationActivity extends AppCompatActivity {
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
                 .show();
-        firebaseFirestore.collection("User2")
+        firebaseFirestore.collection("Total")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .collection("List")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -157,7 +162,13 @@ public class NotificationActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
                             count++;
                             String dta = documentSnapshot.getString("name");
-                            if (dta.toLowerCase().toString().contains(newText.toLowerCase().toString())) {
+                            String dta1 = documentSnapshot.getString("statusss");
+                            String dta2 = documentSnapshot.getString("duetakka");
+                            String dta3 = documentSnapshot.getString("duetakka");
+                            if (dta.toLowerCase().toString().contains(newText.toLowerCase().toString())||
+                                    dta1.toLowerCase().toString().contains(newText.toLowerCase().toString())
+                                    || dta2.toLowerCase().toString().contains(newText.toLowerCase().toString())
+                                    || dta3.toLowerCase().toString().contains(newText.toLowerCase().toString())) {
                                 // Toast.makeText(AllcategoruySearch.this, ""+dta, Toast.LENGTH_SHORT).show();
                                 UserModel add_customer=new UserModel(
                                         documentSnapshot.getString("ide"),
@@ -195,7 +206,9 @@ public class NotificationActivity extends AppCompatActivity {
     }
     private void reciveData() {
 
-        firebaseFirestore.collection("User2")
+        firebaseFirestore.collection("Total")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .collection("List")
                 .orderBy("time", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

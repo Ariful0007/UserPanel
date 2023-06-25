@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="headerTextSize">25sp</dimen>
+    <dimen name="newsMoreTextSize">12sp</dimen>
+    <dimen name="loginViewsMargin">20dp</dimen>
 
+
+    //
+
+
+
+    <dimen name="space_15dp">15dp</dimen>
+    <dimen name="space_20dp">20dp</dimen>
+
+
+
+    //new
 
     <!--    <dimen name="design_bottom_navigation_text_size" tools:override="true">6dp</dimen>
        <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12dp</dimen>

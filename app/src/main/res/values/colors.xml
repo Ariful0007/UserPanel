@@ -3,7 +3,18 @@
     //4
     <color name="toolbar1">#244E4A</color>
 
+    //login and register
+    <color name="themeColor">#11CFC5</color>
+    <!--normal colors-->
+    <color name="darkTextColor">#020000</color>
 
+
+    <!--colors for light mode-->
+    <color name="contentTextColor">#020000</color>
+
+    <!--colors for light mode-->
+    <color name="whiteTextColor">#fff</color>
+    <color name="primaryTextColor">#11CFC5</color>
     <!-- Login section! -->
     <!-- Registration section! -->
     <!-- Recovery section! -->

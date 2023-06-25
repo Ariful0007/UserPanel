@@ -85,11 +85,25 @@ public class MainActivity extends AppCompatActivity {
         appSlogan.setAnimation(bottomAnimation);
         poweredBy.setAnimation(bottomAnimation);
         developerDepository.setAnimation(bottomAnimation);
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         new Handler().postDelayed(() -> {
 
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-            finish();
+            if (firebaseUser != null) {
+
+
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                finish();
+
+
+            } else {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
+
+
+
+            }
+
         }, SPLASH_TIMER);
     }
 

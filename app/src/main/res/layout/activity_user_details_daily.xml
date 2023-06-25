@@ -193,7 +193,7 @@
                                 android:fontFamily="@font/montserrat"
                                 android:textAlignment="center"
                                 android:id="@+id/dob"
-                                android:maxLength="11"
+
                                 android:hint="       Ex :  01-01-1999 "
                                 android:background="@drawable/border"
                                 android:layout_marginLeft="20dp"
@@ -229,12 +229,12 @@
 
                                 ></TextView>
 
-                            <EditText
+                            <AutoCompleteTextView
                                 android:fontFamily="@font/montserrat"
                                 android:id="@+id/statusss"
                                 android:textAlignment="center"
 
-                                android:hint="       Ex :  Due "
+                                android:hint="       Ex :  Print "
                                 android:background="@drawable/border"
                                 android:layout_marginLeft="20dp"
                                 android:textColor="@color/black"
@@ -243,7 +243,7 @@
                                 android:layout_marginRight="20dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/space_50dp"
-                                ></EditText>
+                                ></AutoCompleteTextView>
                         </LinearLayout>
                         //totaltake
                         <LinearLayout

@@ -80,6 +80,7 @@ public class TodayUser extends AppCompatActivity {
 
         ///for date
         firebaseFirestore= FirebaseFirestore.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();
 
         ////
 
@@ -93,7 +94,7 @@ public class TodayUser extends AppCompatActivity {
                 .document(""+today)
                 .collection("List")
                 .document("REfer")
-                .collection("abc@gmail.com")
+                .collection(firebaseAuth.getCurrentUser().getEmail())
                 .document();
         recyclerView = findViewById(R.id.rreeeed);
         recyclerView.setHasFixedSize(true);
@@ -154,7 +155,7 @@ public class TodayUser extends AppCompatActivity {
                 .document(""+today)
                 .collection("List")
                 .document("REfer")
-                .collection("abc@gmail.com")
+                .collection(firebaseAuth.getCurrentUser().getEmail())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -165,7 +166,13 @@ public class TodayUser extends AppCompatActivity {
                         for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
                             count++;
                             String dta = documentSnapshot.getString("name");
-                            if (dta.toLowerCase().toString().contains(newText.toLowerCase().toString())) {
+                            String dta1 = documentSnapshot.getString("statusss");
+                            String dta2 = documentSnapshot.getString("duetakka");
+                            String dta3 = documentSnapshot.getString("uuid");
+                            if (dta.toLowerCase().toString().contains(newText.toLowerCase().toString())||
+                                    dta1.toLowerCase().toString().contains(newText.toLowerCase().toString())
+                            || dta2.toLowerCase().toString().contains(newText.toLowerCase().toString())
+                                    || dta3.toLowerCase().toString().contains(newText.toLowerCase().toString())) {
                                 // Toast.makeText(AllcategoruySearch.this, ""+dta, Toast.LENGTH_SHORT).show();
                                 UserModel add_customer=new UserModel(
                                         documentSnapshot.getString("ide"),
@@ -207,7 +214,7 @@ public class TodayUser extends AppCompatActivity {
                 .document(""+today)
                 .collection("List")
                 .document("REfer")
-                .collection("abc@gmail.com")
+                .collection(firebaseAuth.getCurrentUser().getEmail())
                 .orderBy("time", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

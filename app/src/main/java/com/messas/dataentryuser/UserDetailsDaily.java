@@ -1,17 +1,21 @@
 package com.messas.dataentryuser;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.multidex.MultiDex;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +40,7 @@ public class UserDetailsDaily extends AppCompatActivity {
     KProgressHUD progressHUD;
     ImageView spinner1;
     String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class UserDetailsDaily extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
         toolbar.setTitle("User Details");
         setSupportActionBar(toolbar);
+        firebaseAuth=FirebaseAuth.getInstance();
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_myarrow);
@@ -127,8 +133,16 @@ public class UserDetailsDaily extends AppCompatActivity {
                         }
                     }
                 });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.select_dialog_item,sss);
+        //Getting the instance of AutoCompleteTextView
+
+        statusss.setThreshold(1);//will start working from first character
+        statusss.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+        statusss.setTextColor(Color.RED);
         Button cirLoginButton=findViewById(R.id.cirLoginButton);
         cirLoginButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(ide.getText().toString())||TextUtils.isEmpty(phonenumber.getText().toString())||TextUtils.isEmpty(name.getText().toString())
@@ -158,6 +172,30 @@ public class UserDetailsDaily extends AppCompatActivity {
 
                                 }
                             });
+                    firebaseFirestore.collection("Daily")
+                            .document(""+today)
+                            .collection("List")
+                            .document("REfer")
+                            .collection(firebaseAuth.getCurrentUser().getEmail())
+                            .document(phonenumber.getText().toString().toString()+"@gmail.com")
+                            .set(userMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                }
+                            });
+                    firebaseFirestore.collection("Total")
+                            .document(firebaseAuth.getCurrentUser().getEmail())
+                            .collection("List").document(phonenumber.getText().toString().toString()+"@gmail.com")
+                            .set(userMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                }
+                            });
+
                     firebaseFirestore.collection("User2").document(phonenumber.getText().toString().toString()+"@gmail.com")
                             .set(userMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -177,8 +215,10 @@ public class UserDetailsDaily extends AppCompatActivity {
 
     }
     String uuiddd;
+    AutoCompleteTextView statusss;
 
-    EditText ide,phonenumber,name,dob,statusss,totaltaka,paidtakaa,duetakka;
+    EditText ide,phonenumber,name,dob,totaltaka,paidtakaa,duetakka;
+    String [] sss={"PC","Print","On the way","Arrive","Suspend","Bakend","Rework"};
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),TodayUser.class));
